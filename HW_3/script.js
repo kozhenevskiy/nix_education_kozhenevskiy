@@ -104,7 +104,7 @@ getMiddleSalary(arrOfEmployees);
 // task 6
 
 const getRandomEmployee = (arr) => {
-    console.log(arr[Math.floor(Math.random() * (arr.length + 1))]);
+    console.log(arr[Math.floor(Math.random() * arr.length)]);
 }
 
 getRandomEmployee(arrOfEmployees);
