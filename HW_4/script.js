@@ -62,3 +62,86 @@ new Student (studentArr[10]);
 console.log(Student.listOfStudents);
 
 
+// task 2
+
+class CustomString {
+    reverse(str) {
+        console.log(str.split('').reverse().join(''));
+    }
+
+    ucFirst(str) {
+        console.log(str[0].toUpperCase() + str.slice(1));
+    }
+
+    ucWords(str) {
+        let arr = str.split(' ');
+
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] = arr[i][0].toUpperCase() + arr[i].slice(1);
+        }
+
+        str = arr.join(' ');
+
+        console.log(str);
+    }
+}
+
+const myString = new CustomString();
+
+myString.reverse('qwerty');
+
+myString.ucFirst('qwerty');
+
+myString.ucWords('qwerty qwerty qwerty');
+
+
+// task 3
+
+class Validator {
+    static patternEmail = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    static patternDomain = /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/;
+
+    checkIsEmail (email) {
+        if (email.match(Validator.patternEmail)) {
+            console.log(true);
+        } else {
+            console.log(false);
+        }
+    }
+
+    checkIsDomain (domain) {
+        if (domain.match(Validator.patternDomain)) {
+            console.log(true);
+        } else {
+            console.log(false);
+        }
+    }
+
+    checkIsDate (date) {
+        if (!isNaN(Date.parse(date))) {
+            console.log(true);
+        } else {
+            console.log(false);
+        }
+    }
+
+    checkIsPhone (phone) {
+        if (phone.slice(0, 3) === '+38') {
+            console.log(true);
+        } else {
+            console.log(false);
+        }
+    }
+}
+
+var validator = new Validator();
+
+validator.checkIsEmail('vasya.pupkin@gmail.com');
+
+validator.checkIsDomain('google.com');
+
+validator.checkIsDate('30.11.2019');
+
+validator.checkIsDate('2019-11-30');
+
+validator.checkIsPhone('+38 (066) 937-99-92');
