@@ -1,3 +1,30 @@
+// extra task
+
+
+function sortText () {
+	let result = '';
+
+	return function (text) {
+	    	
+	    	if (typeof(text) === undefined || typeof(text) !== 'string') {
+	    		result = '';
+	    	} else {
+	    		result += text;
+	    		console.log(result.split('').sort().join(''));
+	    	}
+	    	
+	    }
+
+}
+
+let func = sortText();
+
+func('dada');
+func('asasdasdad');
+func('ggsg5a5c69a789c9');
+func('asasdasdad');
+
+
 // task 3
 
 function getTime () {
