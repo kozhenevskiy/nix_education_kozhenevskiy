@@ -172,3 +172,18 @@ Array.prototype.john = function (separator) {
 }	
 
 arrTask10.john('-');
+
+
+const arrTask102 = [1, 2, 3, 4, 5];
+
+Array.prototype.redrice = function (func, initialValue = 0) {
+	let result = this[initialValue];
+	
+	for (let i = initialValue + 1; i < this.length; i++) {
+	    result = func(result, this[i], i, this);
+	}
+
+	console.log(result);
+}
+
+console.log(arrTask102.redrice((previousValue, currentValue) => previousValue + currentValue, 1));
