@@ -138,3 +138,37 @@ function getCandidatesByGender (gender) {
 }
 
 getCandidatesByGender('male');
+
+
+// task 10
+
+const arrTask10 = [7, 'sdad', 48, 455, 878];
+
+Array.prototype.john = function (separator) {
+	let str = '',
+		separ;
+
+		switch (separator) {
+
+			case undefined:
+				separ = ',';
+				break;
+			
+			case '':
+				separ = '';
+				break;
+
+			default: 
+				separ = separator;
+				break;
+
+		}
+
+		for (let i = 0; i < this.length; i++) {
+			i < this.length - 1 ? str += this[i] + separ : str += this[i];
+		}
+
+		 console.log(str);
+}	
+
+arrTask10.john('-');
