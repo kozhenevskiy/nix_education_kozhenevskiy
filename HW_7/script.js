@@ -63,3 +63,24 @@ function sortCandidatesArr (sortType) {
 }	
 
 sortCandidatesArr('asc');
+
+
+// task 4
+
+function getEyeColorMap (arr) {
+    const result = {};
+    
+    arr.forEach(elem => {
+            result[elem.eyeColor] = [];
+    })
+
+    arr.forEach(elem => {
+        for (let key in result) {
+            if (elem.eyeColor === key) result[key].push(elem);
+        }
+    })
+
+    console.log(result);
+}
+
+getEyeColorMap (candidateArr)
