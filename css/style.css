@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    margin: 0;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+
+:root {
+    --yellow: #FFCA42;
+    --white: #fff;
+    --light-red: #F05454;
+    --grey-blue: #DAE2EA;
+    --blue: #0E49B5;
+    --light-grey: #DDDADA;
+    --grey: #767272;
+    --green: #1BC943;
+}
+
+
+
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.container {
+    padding: 0 10px;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+header .cart {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--grey);
+    border-radius: 50%;
+    text-align: center;
+}
+
+header .cart img {
+    margin-top: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+header .cart::before {
+    content: '3';
+    position: absolute;
+    top: 20px;
+    left: -12.5px;
+    padding-top: 5px;
+    width: 25px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.17;
+}
+
+.banner {
+    margin-bottom: 15px;
+}
+
+.search input {
+    width: 100%;
+    padding: 15px 0;
+    border: 1px solid var(--light-grey);
+    border-radius: 5px;
+    font-size: 20px;
+    line-height: 1.17;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.search input:focus-visible {
+    outline: none;
+}
+
+.search {
+    margin-bottom: 40px;
+}
+
+.product-cards .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-bottom: 50px;
+    max-width: 300px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-item .heart {
+    padding: 15px 15px 0;
+}
+
+.product-item .card-main {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding: 0 15px 15px;
+    text-align: center;
+}
+
+.product-item img {
+    max-height: 200px;
+    max-width: 200px;
+    margin-bottom: 25px;
+}
+
+.product-item h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.16;
+    color: #000;
+}
+
+.product-item .card-main p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.17;
+    color: var(--grey);
+}
+
+.product-item .product-left,
+.product-item .product-price {
+    font-weight: 700;
+}
+
+.product-item button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    background: var(--blue);
+    font-size: 20px;
+    line-height: 1.17;
+    color: var(--white);
+}
+
+.product-item .card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 15px 28px;
+    background: var(--grey-blue);
+}
+
+.product-item .card-footer p {
+    font-size: 14px;
+    line-height: 1.17;
+    color: #3b3e66;
+}
+
+.product-item .product-reviews {
+    flex-grow: 1;
+}
+
+.product-item .product-reviews p:first-child,
+.product-item .product-orders p:first-child {
+    margin-bottom: 6px;
+}
+
+.product-item .product-orders {
+    text-align: center;
+}
+
+.product-item .reviews-percent,
+.product-item .orders-number {
+    font-weight: 700;
+}
