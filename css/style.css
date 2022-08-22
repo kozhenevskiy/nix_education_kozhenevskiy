@@ -85,6 +85,16 @@ body {
     padding: 0 10px;
 }
 
+.add-to-cart {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    background: var(--blue);
+    font-size: 20px;
+    line-height: 1.17;
+    color: var(--white);
+}
+
 header .container {
     display: flex;
     justify-content: space-between;
@@ -128,14 +138,71 @@ header .cart::before {
     margin-bottom: 15px;
 }
 
+.banner .container {
+    position: relative;
+}
+
+.banner h2 {
+    margin-bottom: 22px;
+    font-size: 72px;
+    line-height: 1.17;
+    color: var(--white);
+}
+
+.banner .h-btn-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.search .input-search-wrap {
+    position: relative;
+}
+
+.search .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translate(0, -50%);
+    width: 20px;
+    height: 20px;
+}
+
+.search .filter-icon-wrap,
+.search .setting-icon-wrap {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(0, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    background: var(--blue);
+}
+
+.search .filter-icon-wrap img,
+.search .setting-icon-wrap img {
+    width: 24px;
+    height: 25px;
+    padding-top: 7.5px;
+}
+
+.search .filter-icon-wrap {
+    right: 68px;
+}
+
 .search input {
     width: 100%;
-    padding: 15px 0;
+    padding: 15px 120px 15px 60px;
     border: 1px solid var(--light-grey);
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.17;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    color: var(--grey);
 }
 
 .search input:focus-visible {
@@ -200,16 +267,6 @@ header .cart::before {
 .product-item .product-left,
 .product-item .product-price {
     font-weight: 700;
-}
-
-.product-item button {
-    padding: 15px 25px;
-    border: none;
-    border-radius: 5px;
-    background: var(--blue);
-    font-size: 20px;
-    line-height: 1.17;
-    color: var(--white);
 }
 
 .product-item .card-footer {

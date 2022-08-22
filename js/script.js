@@ -30,7 +30,7 @@ window.addEventListener('load', (event) => {
                     <h3>${elem.name}</h3>
                     <p><span class="product-left">${elem.orderInfo.inStock}</span> left in stock</p>
                     <p>Price: <span class="product-price">${elem.price}</span> $</p>
-                    <button>Add to cart</button>
+                    <button class="add-to-cart">Add to cart</button>
                 </div>
             </div>
             <div class="card-footer">
