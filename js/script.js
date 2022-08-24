@@ -1,20 +1,6 @@
 
 window.addEventListener('load', (event) => {
-    // let productImg = document.querySelector('.img-card-wrap img'),
-    //     productTitle = document.querySelector('.card-main h3'),
-    //     productLeft = document.querySelector('.product-left'),
-    //     productPrice = document.querySelector('.product-price'),
-    //     productReviews = document.querySelector('.product-reviews');
-
-    // let productItem = document.querySelector('.product-item');
-    let productWrap = document.querySelector('.product-cards .container');
-    // let newr = document.createElement(productItem);
-    // productWrap.appendChild(newr);
-
-    // let productItem = document.createElement('div');
-    //     productItem.classList.add('product-item');
-
-    // productWrap.appendChild(productItem);
+    let productWrap = document.querySelector('.product-cards .items-wrapper');
 
     items.forEach(elem => {
         let productItem = document.createElement('div');
@@ -51,4 +37,82 @@ window.addEventListener('load', (event) => {
 
 
 
+
+    let filterVariants = document.querySelectorAll('.filter-variants'),
+        filterTitles = document.querySelectorAll('.filter-title'),
+        filterArrow = document.querySelectorAll('.filter-title .arrow'),
+        filterBtn = document.querySelector('.filter-icon-wrap'),
+        filterBody = document.querySelector('.filter-wrapper');
+
+        filterTitles.forEach((elem, index) => {
+            elem.addEventListener('click', (event) => {
+                filterVariants[index].classList.toggle('filter-variants-active');
+                filterArrow[index].classList.toggle('arrow-active');
+            });
+        });
+
+        filterBtn.addEventListener('click', (event) => {
+            filterBody.classList.toggle('filter-wrapper-active');
+            event.currentTarget.classList.toggle('active');
+        });
+
+
+
+
+
+        let colorWrapper = document.querySelector('.color-variants'),
+            memoryWrapper = document.querySelector('.memory-variants'),
+            osWrapper = document.querySelector('.os-variants');
+
+            let colorsCollection = [],
+                memoryCollection = [],
+                osCollection = [];
+            
+            items.forEach(elem => {
+                colorsCollection.push(...elem.color);
+                memoryCollection.push(elem.storage);
+                osCollection.push(elem.os);
+            });
+
+            colorsCollection = [... new Set(colorsCollection)];
+            memoryCollection = [... new Set(memoryCollection)].sort((a, b) => {return a - b});
+            osCollection = [... new Set(osCollection)];
+
+            colorsCollection.map(elem => {
+                let variant = document.createElement('div');
+                    variant.classList.add('variant');
+                    variant.innerHTML = `
+                        <input type="checkbox" id="${elem}">
+                        <label for="${elem}">${elem}</label>
+                    `
+
+                    colorWrapper.appendChild(variant);
+            });
+
+            memoryCollection.map(elem => {
+                if (!isNaN(parseFloat(elem))) {
+                let variant = document.createElement('div');
+                    variant.classList.add('variant');
+                    variant.innerHTML = `
+                        <input type="checkbox" id="${elem}">
+                        <label for="${elem}">${elem}</label>
+                    `
+
+                    memoryWrapper.appendChild(variant);
+                }
+            });
+
+            osCollection.map(elem => {
+                if (elem !== null) {
+                let variant = document.createElement('div');
+                    variant.classList.add('variant');
+                    variant.innerHTML = `
+                        <input type="checkbox" id="${elem}">
+                        <label for="${elem}">${elem}</label>
+                    `
+
+                    osWrapper.appendChild(variant);
+                }
+            });
+    
 })
