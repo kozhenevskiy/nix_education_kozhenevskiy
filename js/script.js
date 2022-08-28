@@ -166,5 +166,185 @@ window.addEventListener('load', (event) => {
                     osWrapper.appendChild(variant);
                 }
             });
+
+
+            function filter() {
+            
+                let filterPriceFrom = document.querySelector('#priceFrom'),
+                    filterPriceTo = document.querySelector('#priceTo'),
+                    filterColors = document.querySelectorAll('.color-variants .variant'),
+                    filterMemory = document.querySelectorAll('.memory-variants .variant'),
+                    filterOS = document.querySelectorAll('.os-variants .variant'),
+                    filterDisplay2_5 = document.querySelector('#inch2_5'),
+                    filterDisplay5_7 = document.querySelector('#inch5_7'),
+                    filterDisplay7_12 = document.querySelector('#inch7_12'),
+                    filterDisplay12_16 = document.querySelector('#inch12_16'),
+                    filterDisplay16 = document.querySelector('#more16'),
+                    displayVariants = document.querySelectorAll('.display-variant');
+
+                let productCards = document.querySelectorAll('.product-item');
+                    productCards.forEach(elem => {elem.remove()})
+
+                let cardsArr = [],
+                    colorsActive = [],
+                    memoryActive = [],
+                    osActive = [],
+                    priceArr = [];
+
+                items.forEach(elem => {priceArr.push(elem.price)});
+                priceArr = priceArr.sort((a, b) => {return a - b});
+
+                if(filterPriceFrom.value.length !== 0 || filterPriceTo.value.length !== 0) {
+                    if(+filterPriceFrom.value < priceArr[0] || filterPriceFrom.value.length === 0) {filterPriceFrom.value = priceArr[0]};
+                    if(+filterPriceTo.value > priceArr[priceArr.length - 1] || filterPriceTo.value.length === 0) {filterPriceTo.value = priceArr[priceArr.length - 1]};
+                    items.forEach(elem => {
+                        if(elem.price >= filterPriceFrom.value && elem.price <= filterPriceTo.value) {
+                            cardsArr.push(elem);
+                        }
+                    })
+                } else {
+                    items.forEach(elem => {cardsArr.push(elem)});
+                }    
+
+                items.forEach(elem => {
+                    if(elem.price >= filterPriceFrom.value && elem.price <= filterPriceTo.value) {
+                        cardsArr.push(elem);
+                    }
+                })
+
+                filterColors.forEach(elem => {
+                    if(elem.querySelector('input').checked === true) {
+                        colorsActive.push(elem.querySelector('label').textContent);
+                    }
+                })
+
+                filterMemory.forEach(elem => {
+                    if(elem.querySelector('input').checked === true) {
+                        memoryActive.push(elem.querySelector('label').textContent);
+                    }
+                })
+
+                filterOS.forEach(elem => {
+                    if(elem.querySelector('input').checked === true) {
+                        osActive.push(elem.querySelector('label').textContent);
+                    }
+                })
+
+                function colorsFilter() {
+                    let filteredByColors = [];
+                        cardsArr.forEach(elem1 => {
+                            colorsActive.forEach(elem2 => {
+                                if(elem1.color.indexOf(elem2) !== -1) {
+                                    filteredByColors.push(elem1);
+                                }
+                            })
+                        })
+                    cardsArr = filteredByColors;
+                }
+
+                if(colorsActive.length >= 1) {colorsFilter();};
+
+                function memoryFilter() {
+                    let filteredByMemory = [];
+                        cardsArr.forEach(elem1 => {
+                            memoryActive.forEach(elem2 => {
+                                if(elem1.storage === +elem2) {
+                                    filteredByMemory.push(elem1);
+                                }
+                            })
+                        })
+                    cardsArr = filteredByMemory;
+                }
+
+                if(memoryActive.length >= 1) {memoryFilter();};
+
+                function osFilter() {
+                    let filteredByOS = [];
+                        cardsArr.forEach(elem1 => {
+                            osActive.forEach(elem2 => {
+                                if(elem1.os === elem2) {
+                                    filteredByOS.push(elem1);
+                                }
+                            })
+                        })
+                    cardsArr = filteredByOS;
+                }
+
+                if(osActive.length >= 1) {osFilter();};
+
+                function displayFilter() {
+                    let filteredByDisplay = [];
+                        cardsArr.forEach(elem => {
+                            if(filterDisplay2_5.checked === true && elem.display >= 2 && elem.display < 5) {
+                                filteredByDisplay.push(elem);
+                            }
+
+                            if(filterDisplay5_7.checked === true && elem.display >= 5 && elem.display < 7) {
+                                filteredByDisplay.push(elem);
+                            }
+
+                            if(filterDisplay7_12.checked === true && elem.display >= 7 && elem.display < 12) {
+                                filteredByDisplay.push(elem);
+                            }
+
+                            if(filterDisplay12_16.checked === true && elem.display >= 12 && elem.display < 16) {
+                                filteredByDisplay.push(elem);
+                            }
+
+                            if(filterDisplay16.checked === true && elem.display >= 16) {
+                                filteredByDisplay.push(elem);
+                            }
+                        })
+
+                        cardsArr = filteredByDisplay;
+                }
+
+                displayVariants.forEach(elem => {if(elem.querySelector('input').checked === true) {displayFilter()}});
+
+                cardsArr.forEach(elem => {
+                    let productItem = document.createElement('div');
+                        productItem.classList.add('product-item');
+                        productItem.setAttribute('data-items', `${elem.id}`);
+            
+                    productItem.innerHTML = `
+                        <div class="heart"></div>
+                        <div class="card-main">
+                            <div>
+                                <img src="img/${elem.imgUrl}" alt="${elem.name}">
+                            </div>
+                            <div>
+                                <h3>${elem.name}</h3>
+                                <p><span class="product-left">${elem.orderInfo.inStock}</span> left in stock</p>
+                                <p>Price: <span class="product-price">${elem.price}</span> $</p>
+                                <button class="add-to-cart">Add to cart</button>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="heart"></div>
+                            <div class="product-reviews">
+                                <p><span class="reviews-percent">${elem.orderInfo.reviews}%</span> Positive reviews</p>
+                                <p>Above avarage</p>
+                            </div>
+                            <div class="product-orders">
+                                <p class="orders-number">${Math.floor(Math.random() * (1000 - 300) + 300)}</p>
+                                <p>orders</p>
+                            </div>
+                        </div>
+                `;
+            
+                productWrap.appendChild(productItem);
+                });
+
+                cardsArr = [];
+
+            }
+
+            let goFilter = document.querySelector('.go-filter');
+
+            goFilter.addEventListener('click', (event) => {
+                filter();
+            })
+
+
     
 })

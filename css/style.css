@@ -227,6 +227,7 @@ header .cart::before {
 .product-cards .items-wrapper {
     display: flex;
     justify-content: center;
+    align-self: flex-start;
     flex-wrap: wrap;
     width: 50%;
 }
@@ -416,6 +417,20 @@ header .cart::before {
 
 .filter .price-variants>div input:focus-visible {
     outline: none;
+}
+
+.go-filter {
+    padding: 20px 0;
+    cursor: pointer;
+    background: var(--blue);
+}
+
+.go-filter div {
+    text-align: center;
+}
+
+.go-filter h4 {
+    color: var(--white);
 }
 
 
