@@ -5,6 +5,7 @@ window.addEventListener('load', (event) => {
     items.forEach(elem => {
         let productItem = document.createElement('div');
             productItem.classList.add('product-item');
+            productItem.setAttribute('data-items', `${elem.id}`);
 
         productItem.innerHTML = `
             <div class="heart"></div>
@@ -34,6 +35,57 @@ window.addEventListener('load', (event) => {
 
     productWrap.appendChild(productItem);
     });
+
+    let modalImg = document.querySelector('.modal-img img'),
+        modalTitle = document.querySelector('.modal-description h3'), 
+        modalReviews = document.querySelector('.modal-reviews .reviews-percent'),
+        modalOrders = document.querySelector('.modal-reviews .orders-number'),
+        modalColor = document.querySelector('.modal-color dd'),
+        modalOperating = document.querySelector('.modal-operating-system dd'),
+        modalChip = document.querySelector('.modal-chip dd'),
+        modalHeight = document.querySelector('.modal-height dd'),
+        modalWidth = document.querySelector('.modal-width dd'),
+        modalDepth = document.querySelector('.modal-depth dd'),
+        modalWeight = document.querySelector('.modal-weight dd'),
+        modalPrice = document.querySelector('.modal-price'),
+        modalAmount = document.querySelector('.modal-amount'),
+        modalWindow = document.querySelector('.modal-card-wrapper');
+
+
+
+    productWrap.addEventListener('click', (event) => {
+        let tg = event.target.closest('.product-item'),
+            ordersInCard = tg.querySelector('.orders-number').textContent,
+            id ;
+            items.forEach((elem, index) => { if (+tg.getAttribute('data-items') === elem.id) id = index})
+
+
+        modalImg.setAttribute('src', `img/${items[id].imgUrl}`);
+        modalImg.setAttribute('alt', items[id].name);
+        modalTitle.textContent = items[id].name;
+        modalOrders.textContent = ordersInCard;
+        modalReviews.textContent = items[id].orderInfo.reviews + '%';
+        modalColor.textContent = items[id].color.join(', ');
+        modalChip.textContent = items[id].chip.name;
+        modalHeight.textContent = items[id].size.height;
+        modalWidth.textContent = items[id].size.width;
+        modalDepth.textContent = items[id].size.depth;
+        modalWeight.textContent = items[id].size.weight;
+        modalPrice.textContent = items[id].price;
+        modalAmount.textContent = items[id].orderInfo.inStock;
+        items[id].os === null ? modalOperating.textContent = '---' 
+            : modalOperating.textContent = items[id].os 
+
+
+
+
+        modalWindow.classList.add('active');
+
+    })
+
+    modalWindow.addEventListener('click', (event) => {
+        event.target.classList.remove('active');
+    })
 
 
 
