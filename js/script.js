@@ -8,9 +8,9 @@ window.addEventListener('load', (event) => {
             productItem.setAttribute('data-items', `${elem.id}`);
 
         productItem.innerHTML = `
-            <div class="heart"></div>
+            <div class="heart"><img src="img/icons/like_empty.svg" alt="like"></div>
             <div class="card-main">
-                <div>
+                <div class="card-img-wrapper">
                     <img src="img/${elem.imgUrl}" alt="${elem.name}">
                 </div>
                 <div>
@@ -21,7 +21,7 @@ window.addEventListener('load', (event) => {
                 </div>
             </div>
             <div class="card-footer">
-                <div class="heart"></div>
+                <div class="heart"><img src="img/icons/like_filled.svg" alt="like"></div>
                 <div class="product-reviews">
                     <p><span class="reviews-percent">${elem.orderInfo.reviews}%</span> Positive reviews</p>
                     <p>Above avarage</p>
@@ -36,58 +36,196 @@ window.addEventListener('load', (event) => {
     productWrap.appendChild(productItem);
     });
 
-    let modalImg = document.querySelector('.modal-img img'),
-        modalTitle = document.querySelector('.modal-description h3'), 
-        modalReviews = document.querySelector('.modal-reviews .reviews-percent'),
-        modalOrders = document.querySelector('.modal-reviews .orders-number'),
-        modalColor = document.querySelector('.modal-color dd'),
-        modalOperating = document.querySelector('.modal-operating-system dd'),
-        modalChip = document.querySelector('.modal-chip dd'),
-        modalHeight = document.querySelector('.modal-height dd'),
-        modalWidth = document.querySelector('.modal-width dd'),
-        modalDepth = document.querySelector('.modal-depth dd'),
-        modalWeight = document.querySelector('.modal-weight dd'),
-        modalPrice = document.querySelector('.modal-price'),
-        modalAmount = document.querySelector('.modal-amount'),
-        modalWindow = document.querySelector('.modal-card-wrapper');
+    function createCartList() {
+
+        let cartItem = document.querySelector('.cart-item'),
+            cartsWrapp = document.querySelector('.cart-items'),
+            productButtons = document.querySelectorAll('.product-item .add-to-cart');
+            
+        function addToCart(url, name, price) {
+            let newCartItem = document.createElement('div');
+
+                newCartItem.classList.add('cart-item');
+                newCartItem.innerHTML = cartItem.innerHTML;
+
+            newCartItem.querySelector('.cart-img-wrapper img').setAttribute('src', url);
+            newCartItem.querySelector('.cart-img-wrapper img').setAttribute('alt', name);
+            newCartItem.querySelector('.cart-item-info h3').textContent = name;
+            newCartItem.querySelector('.cart-item-price>p span').textContent = price;
+            newCartItem.querySelector('.item-amount').textContent = 1;
+
+            cartsWrapp.appendChild(newCartItem);
+            countTotal();
+            delFromCart();
+            changeAmount();
+        }
+
+        function delFromCart() {
+            let delBtn = document.querySelectorAll('.cart-item-container .cart-item-del');
+
+            delBtn.forEach(elem => {
+                elem.addEventListener('click', (event) => {
+                    event.currentTarget.closest('.cart-item').remove();
+                    countTotal();
+                })
+            })
+        }
+
+        function countTotal() {
+            let cartItems = cartsWrapp.querySelectorAll('.cart-item'),
+                cartTotalBits = document.querySelector('.cart-total-bits'),
+                cartTotalCash = document.querySelector('.cart-total-cash'),
+                cartItemsCounter = document.querySelector('.cart-items-counter'),
+                totalBits = 0,
+                totalCash = 0;
+
+            cartItems.forEach(elem => {
+                let elemAmount = +elem.querySelector('.item-amount').textContent,
+                    elemPrice = +elem.querySelector('.cart-item-price>p span').textContent;
 
 
+                totalBits += elemAmount;
+                totalCash += elemAmount * elemPrice;
 
-    productWrap.addEventListener('click', (event) => {
-        let tg = event.target.closest('.product-item'),
-            ordersInCard = tg.querySelector('.orders-number').textContent,
-            id ;
-            items.forEach((elem, index) => { if (+tg.getAttribute('data-items') === elem.id) id = index})
+            })
+
+            cartTotalBits.textContent = totalBits;
+            cartTotalCash.textContent = totalCash;
+            cartItemsCounter.textContent = totalBits;
+        }
+
+        function changeAmount() {
+            let cartItems = cartsWrapp.querySelectorAll('.cart-item');
+
+            cartItems.forEach(elem => {
+                let increaseAmount = elem.querySelector('.item-count-up'),
+                    reduceAmount = elem.querySelector('.item-count-down'),
+                    elemAmount = elem.querySelector('.item-amount');
+
+                increaseAmount.addEventListener('click', (event) => {
+                    if(+elemAmount.textContent < 4) {
+                        elemAmount.textContent = +elemAmount.textContent + 1;
+                        countTotal();
+                        makeBlocked();
+                        event.stopImmediatePropagation();
+                    }
+                })
+
+                reduceAmount.addEventListener('click', (event) => {
+                    if(+elemAmount.textContent > 1) {
+                        elemAmount.textContent = +elemAmount.textContent - 1;
+                        countTotal();
+                        makeBlocked();
+                        event.stopImmediatePropagation();
+                    }
+                })
 
 
-        modalImg.setAttribute('src', `img/${items[id].imgUrl}`);
-        modalImg.setAttribute('alt', items[id].name);
-        modalTitle.textContent = items[id].name;
-        modalOrders.textContent = ordersInCard;
-        modalReviews.textContent = items[id].orderInfo.reviews + '%';
-        modalColor.textContent = items[id].color.join(', ');
-        modalChip.textContent = items[id].chip.name;
-        modalHeight.textContent = items[id].size.height;
-        modalWidth.textContent = items[id].size.width;
-        modalDepth.textContent = items[id].size.depth;
-        modalWeight.textContent = items[id].size.weight;
-        modalPrice.textContent = items[id].price;
-        modalAmount.textContent = items[id].orderInfo.inStock;
-        items[id].os === null ? modalOperating.textContent = '---' 
-            : modalOperating.textContent = items[id].os 
+                function makeBlocked() {
+                    if(+elemAmount.textContent === 1) {
+                        reduceAmount.classList.add('blocked');
+                    } else if(reduceAmount.classList.contains('blocked')) {
+                        reduceAmount.classList.remove('blocked');
+                    }
+
+                    if(+elemAmount.textContent === 4) {
+                        increaseAmount.classList.add('blocked');
+                    } else if(increaseAmount.classList.contains('blocked')) {
+                        increaseAmount.classList.remove('blocked');
+                    }
+                }
+                makeBlocked();
+
+            })
+                 
+        }
+
+        productButtons.forEach(elem => {
+            elem.addEventListener('click', (event) => {
+                    let cartBtn = event.target.closest('.add-to-cart'),
+                        url = cartBtn.closest('.card-main').querySelector('img').getAttribute('src'),
+                        name = cartBtn.closest('.card-main').querySelector('h3').textContent,
+                        price = cartBtn.closest('.card-main').querySelector('.product-price').textContent;
+
+                addToCart(url, name, price);
+                event.stopImmediatePropagation();
+            })
+        });
+
+        let modalCartBtn = document.querySelector('.modal-card .add-to-cart'),
+            modalCard = document.querySelector('.modal-card');
+
+        modalCartBtn.addEventListener('click', (event) => {
+            let url = modalCard.querySelector('.modal-img img').getAttribute('src'),
+                name = modalCard.querySelector('.modal-description h3').textContent,
+                price = modalCard.querySelector('.modal-price').textContent;
+
+            addToCart(url, name, price);
+            event.stopImmediatePropagation();
+        })
 
 
+    }
+    createCartList();
+
+    let cartBody = document.querySelector('.cart-body'),
+        cartBtn = document.querySelector('.cart-btn-wrapper');
+
+        cartBtn.addEventListener('click', (event) => {
+            cartBody.classList.toggle('active');
+        })
 
 
-        modalWindow.classList.add('active');
+    function createModalOfProduct() {
+        let modalImg = document.querySelector('.modal-img img'),
+            modalTitle = document.querySelector('.modal-description h3'), 
+            modalReviews = document.querySelector('.modal-reviews .reviews-percent'),
+            modalOrders = document.querySelector('.modal-reviews .orders-number'),
+            modalColor = document.querySelector('.modal-color dd'),
+            modalOperating = document.querySelector('.modal-operating-system dd'),
+            modalChip = document.querySelector('.modal-chip dd'),
+            modalHeight = document.querySelector('.modal-height dd'),
+            modalWidth = document.querySelector('.modal-width dd'),
+            modalDepth = document.querySelector('.modal-depth dd'),
+            modalWeight = document.querySelector('.modal-weight dd'),
+            modalPrice = document.querySelector('.modal-price'),
+            modalAmount = document.querySelector('.modal-amount'),
+            modalWindow = document.querySelector('.modal-card-wrapper'),
+            productCard = document.querySelectorAll('.items-wrapper .product-item');
 
-    })
+        productCard.forEach(elem => {
+            elem.addEventListener('click', (event) => {
+                let tg = event.target.closest('.product-item'),
+                    ordersInCard = tg.querySelector('.orders-number').textContent,
+                    id;
+                    items.forEach((elem, index) => { if (+tg.getAttribute('data-items') === elem.id) id = index})
 
-    modalWindow.addEventListener('click', (event) => {
-        event.target.classList.remove('active');
-    })
+                modalImg.setAttribute('src', `img/${items[id].imgUrl}`);
+                modalImg.setAttribute('alt', items[id].name);
+                modalTitle.textContent = items[id].name;
+                modalOrders.textContent = ordersInCard;
+                modalReviews.textContent = items[id].orderInfo.reviews + '%';
+                modalColor.textContent = items[id].color.join(', ');
+                modalChip.textContent = items[id].chip.name;
+                modalHeight.textContent = items[id].size.height;
+                modalWidth.textContent = items[id].size.width;
+                modalDepth.textContent = items[id].size.depth;
+                modalWeight.textContent = items[id].size.weight;
+                modalPrice.textContent = items[id].price;
+                modalAmount.textContent = items[id].orderInfo.inStock;
+                items[id].os === null ? modalOperating.textContent = '---' 
+                    : modalOperating.textContent = items[id].os 
 
+                modalWindow.classList.add('active');
+                createCartList();
+            })
+        })
 
+        modalWindow.addEventListener('click', (event) => {
+            event.target.classList.remove('active');
+        })
+    }
+    createModalOfProduct();
 
 
     let filterVariants = document.querySelectorAll('.filter-variants'),
@@ -107,10 +245,6 @@ window.addEventListener('load', (event) => {
             filterBody.classList.toggle('filter-wrapper-active');
             event.currentTarget.classList.toggle('active');
         });
-
-
-
-
 
         let colorWrapper = document.querySelector('.color-variants'),
             memoryWrapper = document.querySelector('.memory-variants'),
@@ -166,7 +300,6 @@ window.addEventListener('load', (event) => {
                     osWrapper.appendChild(variant);
                 }
             });
-
 
             function filter() {
             
@@ -307,9 +440,9 @@ window.addEventListener('load', (event) => {
                         productItem.setAttribute('data-items', `${elem.id}`);
             
                     productItem.innerHTML = `
-                        <div class="heart"></div>
+                        <div class="heart"><img src="img/icons/like_empty.svg" alt="like"></div>
                         <div class="card-main">
-                            <div>
+                            <div class="card-img-wrapper">
                                 <img src="img/${elem.imgUrl}" alt="${elem.name}">
                             </div>
                             <div>
@@ -320,7 +453,7 @@ window.addEventListener('load', (event) => {
                             </div>
                         </div>
                         <div class="card-footer">
-                            <div class="heart"></div>
+                            <div class="heart"><img src="img/icons/like_filled.svg" alt="like"></div>
                             <div class="product-reviews">
                                 <p><span class="reviews-percent">${elem.orderInfo.reviews}%</span> Positive reviews</p>
                                 <p>Above avarage</p>
@@ -337,14 +470,49 @@ window.addEventListener('load', (event) => {
 
                 cardsArr = [];
 
+                createModalOfProduct();
+                createCartList();
+                addToLikely();
+                buttonClickEffect();
             }
 
-            let goFilter = document.querySelector('.go-filter');
+    let goFilter = document.querySelector('.go-filter');
 
-            goFilter.addEventListener('click', (event) => {
-                filter();
+    goFilter.addEventListener('click', (event) => {
+        filter();
+    })
+
+    function addToLikely() {
+        let heart = document.querySelectorAll('.product-item > .heart > img');
+
+        heart.forEach(elem => {
+            elem.addEventListener('click', (event) => {
+                if(!elem.classList.contains('filled')) {
+                    elem.classList.add('filled');
+                } else {
+                    elem.classList.remove('filled');
+                }
+                event.stopImmediatePropagation();
             })
+        })
+    }
+    addToLikely();
+
+    function buttonClickEffect() {
+        let button = document.querySelectorAll('.add-to-cart');
+
+        button.forEach(elem => {
+            elem.addEventListener('mousedown', (event) => {
+                if (!elem.classList.contains('clicked')) elem.classList.add('clicked');
+                event.stopImmediatePropagation();
+            })
+            elem.addEventListener('mouseup', (event) => {
+                if (elem.classList.contains('clicked')) elem.classList.remove('clicked');
+                event.stopImmediatePropagation();
+            })
+        })
+    }
+    buttonClickEffect();
 
 
-    
 })
