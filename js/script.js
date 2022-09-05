@@ -36,13 +36,14 @@ window.addEventListener('load', (event) => {
     productWrap.appendChild(productItem);
     });
 
-    function createCartList() {
+    let countOfUseFunctStorage = 0;
 
+    function createCartList() {
         let cartItem = document.querySelector('.cart-item'),
             cartsWrapp = document.querySelector('.cart-items'),
             productButtons = document.querySelectorAll('.product-item .add-to-cart');
             
-        function addToCart(url, name, price) {
+        function addToCart(url, name, price, amount = 1) {
             let newCartItem = document.createElement('div');
 
                 newCartItem.classList.add('cart-item');
@@ -51,13 +52,28 @@ window.addEventListener('load', (event) => {
             newCartItem.querySelector('.cart-img-wrapper img').setAttribute('src', url);
             newCartItem.querySelector('.cart-img-wrapper img').setAttribute('alt', name);
             newCartItem.querySelector('.cart-item-info h3').textContent = name;
-            newCartItem.querySelector('.cart-item-price>p span').textContent = price;
-            newCartItem.querySelector('.item-amount').textContent = 1;
+            newCartItem.querySelector('.cart-item-price>p span').textContent = +price;
+            newCartItem.querySelector('.item-amount').textContent = amount;
 
             cartsWrapp.appendChild(newCartItem);
             countTotal();
             delFromCart();
             changeAmount();
+
+            window.localStorage.setItem(`cartElem:${name}${price}`,`${url},${name},${price},${amount}`);
+            
+        }
+
+        function addFromStorage() {
+            let localCartElements = Object.keys(localStorage);
+            if (countOfUseFunctStorage === 0) {
+                localCartElements.forEach(elem => {
+                    if(elem.startsWith('cartElem')) {
+                        addToCart(...window.localStorage.getItem(elem).split(","));
+                    }
+                })
+                countOfUseFunctStorage += 1;
+            }
         }
 
         function delFromCart() {
@@ -65,7 +81,12 @@ window.addEventListener('load', (event) => {
 
             delBtn.forEach(elem => {
                 elem.addEventListener('click', (event) => {
-                    event.currentTarget.closest('.cart-item').remove();
+                    let cartItem = event.currentTarget.closest('.cart-item'),
+                        cartTitle = cartItem.querySelector('.cart-item-info h3').textContent,
+                        cartPrice = cartItem.querySelector('.cart-item-price>p span').textContent;
+                        
+                    window.localStorage.removeItem(`cartElem:${cartTitle}${cartPrice}`);
+                    cartItem.remove();
                     countTotal();
                 })
             })
@@ -100,13 +121,17 @@ window.addEventListener('load', (event) => {
             cartItems.forEach(elem => {
                 let increaseAmount = elem.querySelector('.item-count-up'),
                     reduceAmount = elem.querySelector('.item-count-down'),
-                    elemAmount = elem.querySelector('.item-amount');
+                    elemAmount = elem.querySelector('.item-amount'),
+                    cartTitle = elem.querySelector('.cart-item-info h3').textContent,
+                    cartPrice = elem.querySelector('.cart-item-price>p span').textContent,
+                    cartImg = elem.querySelector('.cart-img-wrapper img').getAttribute('src');
 
                 increaseAmount.addEventListener('click', (event) => {
                     if(+elemAmount.textContent < 4) {
                         elemAmount.textContent = +elemAmount.textContent + 1;
                         countTotal();
                         makeBlocked();
+                        window.localStorage.setItem(`cartElem:${cartTitle}${cartPrice}`,`${cartImg},${cartTitle},${cartPrice},${elemAmount.textContent}`);
                         event.stopImmediatePropagation();
                     }
                 })
@@ -116,6 +141,7 @@ window.addEventListener('load', (event) => {
                         elemAmount.textContent = +elemAmount.textContent - 1;
                         countTotal();
                         makeBlocked();
+                        window.localStorage.setItem(`cartElem:${cartTitle}${cartPrice}`,`${cartImg},${cartTitle},${cartPrice},${elemAmount.textContent}`);
                         event.stopImmediatePropagation();
                     }
                 })
@@ -163,8 +189,7 @@ window.addEventListener('load', (event) => {
             addToCart(url, name, price);
             event.stopImmediatePropagation();
         })
-
-
+        addFromStorage();
     }
     createCartList();
 
@@ -217,7 +242,6 @@ window.addEventListener('load', (event) => {
                     : modalOperating.textContent = items[id].os 
 
                 modalWindow.classList.add('active');
-                createCartList();
             })
         })
 
