@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -51,3 +53,85 @@ table {
 
 
 
+.wrapper {
+    font-family: 'Open Sans', sans-serif;
+}
+
+main {
+    margin: 100px 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 520px;
+}
+
+.calendar {
+    display: flex;
+    max-width: 245px;
+}
+
+.time-wrapper {
+    width: 45px;
+}
+
+
+.time-item {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 45px;
+    height: 120px;
+    color: #8f98a0;
+}
+
+.time-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 245px;
+    background: #d3dce4;
+}
+
+.time-item p {
+    font-size: 16px;
+}
+
+.time-item span {
+    font-size: 12px;
+}
+
+.event-wrapper {
+    position: relative;
+    width: 200px;
+    overflow: hidden;
+}
+
+.event {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 0;
+    background: #E2ECF5;
+}
+
+.event h2 {
+    margin: 5px 0 0 5px;
+    font-size: 14px;
+}
+
+.event::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 2px;
+    background: #6E9ECF;
+}
