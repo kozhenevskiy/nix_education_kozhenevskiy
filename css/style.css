@@ -62,10 +62,13 @@ main {
 }
 
 .container {
-    display: flex;
-    justify-content: space-between;
     margin: 0 auto;
     max-width: 520px;
+}
+
+.calendar-wrapper {
+    display: flex;
+    justify-content: space-between;
 }
 
 .calendar {
@@ -109,7 +112,6 @@ main {
 .event-wrapper {
     position: relative;
     width: 200px;
-    overflow: hidden;
 }
 
 .event {
@@ -119,14 +121,12 @@ main {
     width: 200px;
     height: 0;
     background: #E2ECF5;
+    transition: all 0.5s ease;
+    cursor: pointer;
 }
 
-.event h2 {
-    margin: 5px 0 0 5px;
-    font-size: 14px;
-}
-
-.event::before {
+.event::before,
+.event-descr::before {
     content: "";
     position: absolute;
     top: 0;
@@ -134,4 +134,50 @@ main {
     bottom: 0;
     width: 2px;
     background: #6E9ECF;
+}
+
+.event > h2 {
+    display: inline-block;
+    position: relative;
+    margin: 5px 0 0 5px;
+    overflow: hidden;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.event-descr {
+    position: absolute;
+    display: none;
+    bottom: 90%;
+    left: 95%;
+    z-index: 10;
+    padding: 10px;
+    background: #d0f6c4;
+}
+
+.event:hover {
+    background: #d0f6c4;
+}
+
+.event-descr > h2 {
+    margin: 5px 0 15px 5px;
+    font-size: 14px;
+}
+
+.event-descr > button {
+    margin: 0 auto;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #E2ECF5;
+    cursor: pointer;
+}
+
+.event-descr > button:hover {
+    background: #ff9f9f;
+}
+
+.event-descr-block {
+    display: block;
 }
