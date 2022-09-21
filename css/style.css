@@ -63,7 +63,7 @@ main {
 
 .container {
     margin: 0 auto;
-    max-width: 520px;
+    max-width: 570px;
 }
 
 .calendar-wrapper {
@@ -73,7 +73,7 @@ main {
 
 .calendar {
     display: flex;
-    max-width: 245px;
+    max-width: 270px;
 }
 
 .time-wrapper {
@@ -97,7 +97,7 @@ main {
     top: 0;
     left: 0;
     height: 1px;
-    width: 245px;
+    width: 270px;
     background: #d3dce4;
 }
 
@@ -111,29 +111,19 @@ main {
 
 .event-wrapper {
     position: relative;
-    width: 200px;
+    width: 225px;
 }
 
 .event {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200px;
+    width: 198px;
     height: 0;
+    border-left: 2px solid #6E9ECF;
     background: #E2ECF5;
     transition: all 0.5s ease;
     cursor: pointer;
-}
-
-.event::before,
-.event-descr::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 2px;
-    background: #6E9ECF;
 }
 
 .event > h2 {
@@ -146,18 +136,67 @@ main {
     text-overflow: ellipsis;
 }
 
-.event-descr {
-    position: absolute;
+.title-popup {
     display: none;
-    bottom: 90%;
-    left: 95%;
-    z-index: 10;
-    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 3px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    z-index: 5;
     background: #d0f6c4;
 }
 
-.event:hover {
+.title-popup p {
+    white-space: nowrap;
+}
+
+.event:hover .title-popup{
+    display: block;
+}
+
+.event-descr {
+    position: absolute;
+    display: none;
+    top: -85px;
+    left: 95%;
+    border-left: 2px solid #75e951;
+    z-index: 10;
+    padding: 10px;
     background: #d0f6c4;
+    cursor: default;
+}
+
+.event-descr-close {
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.event-descr-close div {
+    position: relative;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.event-descr-close div::after, 
+.event-descr-close div::before {
+    content: '';
+    position: absolute;
+    width: 13px;
+    height: 1px;
+    top: 7px;
+    left: 1px;
+    transform: rotate(45deg);
+    background: #000;
+}
+
+.event-descr-close div::after {
+    transform: rotate(135deg);
 }
 
 .event-descr > h2 {
@@ -178,6 +217,58 @@ main {
     background: #ff9f9f;
 }
 
+.event-descr > button + button {
+    width: 76px;
+    margin-left: 15px;
+}
+
 .event-descr-block {
     display: block;
+}
+
+.event-descr label {
+    display: block;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+.event-descr label p {
+    display: inline-block;
+    width: 80px;
+}
+
+.event-descr input[data-start-hours],
+.event-descr input[data-start-minutes] {
+    max-width: 17px;
+    text-align: center;
+}
+
+.event-descr input[data-title] {
+    max-width: 167px;
+}
+
+.event-descr input[data-duration] {
+    max-width: 27px;
+    text-align: center;
+}
+
+.event-descr input[data-huebee] {
+    border-width: 1px;
+    border-radius: 2.3px;
+    color: transparent !important;
+}
+
+.notification {
+    position: fixed;
+    bottom: -300px;
+    right: 30px;
+    padding: 10px 10px 50px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    transition: all 1s ease;
+    background: #d0f6c4;
+}
+
+.notification.active {
+    bottom: 30px;
 }
