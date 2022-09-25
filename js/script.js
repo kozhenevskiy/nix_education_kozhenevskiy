@@ -22,6 +22,10 @@ window.addEventListener('load', (event) => {
                 if(elem.start >= 540) {
                     arr.splice(index, 1);
                 }
+
+                if(elem.start + elem.duration < 0) {
+                    arr.splice(index, 1);
+                }
             })
         }
         removeWrongStartEvent();
@@ -29,6 +33,11 @@ window.addEventListener('load', (event) => {
         eventsArr.forEach((elem) => {
             if(elem.start < 540 && elem.start + elem.duration > 540) {
                 elem.duration = 540 - elem.start;
+            }
+
+            if(elem.start < 0 && elem.start + elem.duration > 0) {
+                elem.duration = elem.duration + elem.start;
+                elem.start = 0;
             }
         })
 
