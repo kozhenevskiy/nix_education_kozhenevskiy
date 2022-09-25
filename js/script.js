@@ -17,11 +17,20 @@ window.addEventListener('load', (event) => {
         let eventsWrapper1 = document.querySelector('.first-part .event-wrapper'),
             eventsWrapper2 = document.querySelector('.second-part .event-wrapper');
 
-    // eventsArr.forEach((elem, index, arr) => {
-    //     if(elem.start >= 540) {
-    //         arr.splice(index, 1);
-    //     }
-    // })
+        function removeWrongStartEvent() {
+            eventsArr.forEach((elem, index, arr) => {
+                if(elem.start >= 540) {
+                    arr.splice(index, 1);
+                }
+            })
+        }
+        removeWrongStartEvent();
+
+        eventsArr.forEach((elem) => {
+            if(elem.start < 540 && elem.start + elem.duration > 540) {
+                elem.duration = 540 - elem.start;
+            }
+        })
 
         eventsArr.forEach((elem, index) => {
             if(!elem.id) {
@@ -297,26 +306,59 @@ window.addEventListener('load', (event) => {
         if(crossEvents.length !== 0) {createCrossEvents(crossEvents)};
 
         function createOtherEvents() {
-            let newCrossEvents = [];
-                crossEvents.forEach(elem => {
-                    newCrossEvents.push(...elem);
-                })
-
-            newCrossEvents.forEach(elem => {
-                noCrossEvents.forEach(el => {
-                    if(elem.start < el.start && elem.start + elem.duration > el.start) {
-                        let changingEvent = document.querySelector(`.event[data-id="${el.id}"]`),
-                            changingEventWidth = parseFloat(document.querySelector(`.event[data-id="${el.id}"]`).style.width),
-                            widthOfCross = parseFloat(document.querySelector(`.event[data-id="${elem.id}"]`).style.width) + 2,
-                            leftOfCross = parseFloat(document.querySelector(`.event[data-id="${elem.id}"]`).style.left);
-
-                            changingEvent.style.width = `${changingEventWidth - widthOfCross - leftOfCross}px`;
-                            changingEvent.style.left = `${widthOfCross + leftOfCross}px`;
-                            console.log(changingEvent);
-                    }
+            crossEvents.forEach(elemen => {
+                elemen.forEach(elem => {
+                    noCrossEvents.forEach(el => {
+                        if(elem.start < el.start && elem.start + elem.duration > el.start) {
+                            let changingEvent = document.querySelectorAll(`.event[data-id="${el.id}"]`);
+                            changingEvent.forEach(element => {
+                            let widthOfCross = parseFloat(document.querySelector(`.event[data-id="${elem.id}"]`).style.width) + 2,
+                                leftOfCross = parseFloat(document.querySelector(`.event[data-id="${elem.id}"]`).style.left);
+                                element.style.width = `${200 - widthOfCross - leftOfCross - 2}px`;
+                                element.style.left = `${widthOfCross + leftOfCross}px`;
+                            })
+                        }
+                    })
                 })
             })
         }
+        if(crossEvents.length !== 0) {createOtherEvents()};
+
+        function createFinallyEvents() {
+            crossEvents.map((elem, index) => {
+                elem.map(el => {
+                    for(let i = 1; i < crossEvents.length; i++) {
+                        if(crossEvents[index + i]) {
+                        if(el.start < crossEvents[index + i][0].start && el.start + el.duration > crossEvents[index + i][0].start) {
+                            let changingEvents = [];
+                            crossEvents[index + i].forEach(element => {
+                                changingEvents.push(element);
+                            })
+                            changingEvents.forEach((ele, ind) => {
+                                let changingEvent = document.querySelectorAll(`.event[data-id="${ele.id}"]`);
+                                changingEvent.forEach(element => {
+                                    let widthOfCross = parseFloat(document.querySelector(`.event[data-id="${el.id}"]`).style.width) + 2,
+                                    leftOfCross = parseFloat(document.querySelector(`.event[data-id="${el.id}"]`).style.left),
+                                    eventsAmount = changingEvents.length;
+                                    if(changingEvents[ind - 1]) {
+                                        let changingEventWidth = parseFloat(document.querySelector(`.event[data-id="${changingEvents[ind - 1].id}"]`).style.width) + 2;
+                                        element.style.left = `${widthOfCross + leftOfCross + (changingEventWidth * ind)}px`;    
+                                    } else {
+                                        element.style.left = `${widthOfCross + leftOfCross}px`;
+                                    }
+
+                                    element.style.width = `${(200 - widthOfCross - leftOfCross) / eventsAmount - 2}px`;
+                                })
+                            })
+                        }
+                    }
+                    }
+                })
+                
+            })
+            
+        }
+        if(crossEvents.length !== 0) {createFinallyEvents()};
         if(crossEvents.length !== 0) {createOtherEvents()};
 
         var colorInput = document.querySelectorAll('.color-input');
