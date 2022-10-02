@@ -1,0 +1,27 @@
+{
+  "type": "module",
+  "name": "nix_hw_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "node ./dist/bundle.js",
+    "start1": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kozhenevskiy/nix_education_kozhenevskiy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kozhenevskiy/nix_education_kozhenevskiy/issues"
+  },
+  "homepage": "https://github.com/kozhenevskiy/nix_education_kozhenevskiy#readme",
+  "devDependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
