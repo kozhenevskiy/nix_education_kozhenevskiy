@@ -1,5 +1,15 @@
+let items;
 
-window.addEventListener('load', (event) => {
+fetch('http://localhost:8000', {
+    method: 'GET',
+}).then(response => {
+    response.json().then(data => {
+        items = data;
+        createProductList();
+    });
+}).catch(err => console.log(err));
+
+function createProductList() {
     let productWrap = document.querySelector('.product-cards .items-wrapper');
 
     items.forEach(elem => {
@@ -537,6 +547,5 @@ window.addEventListener('load', (event) => {
         })
     }
     buttonClickEffect();
-
-
-})
+    
+}
