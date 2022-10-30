@@ -1,22 +1,6 @@
-const { MongoClient } = require("mongodb");
-const username = encodeURIComponent("kozhenevskiyandrey");
-const password = encodeURIComponent("geDgcAE3UVaPgzmz");
-const cluster = "cluster0.2k3b21r.mongodb.net";
+import mongoose from 'mongoose';
+const mongoDB = "mongodb+srv://kozhenevskiyandrey:geDgcAE3UVaPgzmz@cluster0.2k3b21r.mongodb.net/local_library?retryWrites=true&w=majority";
 
-let uri =
-    `mongodb+srv://${username}:${password}@${cluster}/?retryWrites=true&w=majority`;
-const client = new MongoClient(uri);
-async function testMongoConnection() {
-    try {
-        await client.connect();
-        const database = client.db("LessonNodeDB");
-        const ratings = database.collection("Collection0");
-        const cursor = ratings.find();
-        console.log(ratings)
-        await cursor.forEach(doc => console.log(doc));
-
-    } finally {
-        await client.close();
-    }
-}
-module.exports = testMongoConnection;
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => {console.log('mongoose connected')})
+.catch((err) => {console.log(err)});

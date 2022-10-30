@@ -1,13 +1,16 @@
 import express from 'express';
-import {updateContact, addContact, removeContact, getById, listContacts} from './functions.js';
 const app = express();
-// import {testMongoConnection} from './connection/mongoDB';
+import {updateContact, addContact, removeContact, getById, getUsersDB} from '../service/functions.js';
+import '../connection/mongoDB.js';
 
 const host = 'localhost';
 const port = 3000;
 
-app.get('/api/contacts', (req, res) => {
-    let contacts = listContacts();
+app.use(express.urlencoded());
+app.use(express.json());
+
+app.get('/api/contacts', async (req, res) => {
+    let contacts = JSON.stringify(await getUsersDB());
     if(contacts) {
         res.set('Content-Type', 'application/json')
         res.status(200);
@@ -25,8 +28,6 @@ app.delete('/api/contacts/:id', (req, res) => {
     removeContact(req, res, reqId);
 });
 
-app.use(express.urlencoded());
-app.use(express.json());
 app.post('/api/contacts', (req, res) => {
     addContact(req, res);
 })
@@ -39,5 +40,3 @@ app.put('/api/contacts/:id', (req, res) => {
 app.listen(port, host, function () {
     console.log(`Server listens http://${host}:${port}`)
 })
-
-

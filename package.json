@@ -9,7 +9,7 @@
     "build": "webpack",
     "start": "node ./dist/bundle.js",
     "start1": "node ./src/index.js",
-    "app": "node ./src/app.js"
+    "app": "node ./src/controller/app.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "mongodb": "^4.11.0"
+    "mongodb": "^4.11.0",
+    "mongoose": "^6.6.7"
   }
 }

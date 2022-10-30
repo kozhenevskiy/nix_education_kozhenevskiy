@@ -1,13 +1,34 @@
 import fs from "fs";
+import {User} from '../models/models.js';
 
 function listContacts() {
-    return  fs.readFileSync('./src/contacts.json', 'utf-8', (err, data) => {
+    return  fs.readFileSync('src/resource/contacts.json', 'utf-8', (err, data) => {
                 JSON.stringify(data);
             })
 }
 
-function getById(req, res, reqId) {
-    let body = JSON.parse(listContacts());
+const contacts = JSON.parse(listContacts());
+
+function createDB(contacts) {
+        contacts.forEach(item => {
+            User.create({
+                id: item.id,
+                name: item.name,
+                email: item.email,
+                phone: item.phone,
+            })
+                .catch(err => console.log(err));
+        })
+}
+// if(contacts) createDB(contacts);
+
+async function getUsersDB() {
+    let users = await User.find();
+    return users;
+}
+
+async function getById(req, res, reqId) {
+    let body = await getUsersDB();
     if(body.some(item => item.id === reqId)) {
         body.forEach(item => {
             if(item.id === reqId) {
@@ -23,15 +44,12 @@ function getById(req, res, reqId) {
     }
 }
 
-function removeContact(req, res, reqId) {
-    let body = JSON.parse(listContacts());
+async function removeContact(req, res, reqId) {
+    let body = await getUsersDB();
     if(body.some(item => item.id === reqId)) {
         body.splice(reqId - 1, 1)
         body.forEach((item, index) => {item.id = index + 1});
-        body = JSON.stringify(body);
-        fs.writeFileSync('./src/contacts.json', body, (err, data) => {
-            if(err)throw err;
-        })
+        await User.remove().then(createDB(body));
         res.set('Content-Type', 'application/json')
         res.status(200);
         res.send({"message": "Сontact deleted"});
@@ -42,9 +60,10 @@ function removeContact(req, res, reqId) {
     }
 }
 
-function addContact(req, res) {
+async function addContact(req, res) {
     let reqKeys = Object.keys(req.body),
-        necessaryKeys = ['name', 'email', 'phone'];
+        necessaryKeys = ['name', 'email', 'phone'],
+        body = await getUsersDB();
     necessaryKeys.forEach((item, index, arr) => {
         if(reqKeys.includes(item) === false) {
             res.set('Content-Type', 'application/json')
@@ -53,14 +72,14 @@ function addContact(req, res) {
         }
 
         if(reqKeys.includes(item) === true && index === arr.length - 1) {
-            let body = JSON.parse(listContacts()),
-            reqData = req.body;
+            let reqData = req.body;
             reqData = Object.assign({id: body.length + 1}, reqData);
-            body.push(reqData);
-            body = JSON.stringify(body);
-            fs.writeFileSync('./src/contacts.json', body, (err, data) => {
-                if(err)throw err;
-            })
+            User.create({
+                id: reqData.id,
+                name: reqData.name,
+                email: reqData.email,
+                phone: reqData.phone,
+            }).catch(err => console.log(err));
             res.set('Content-Type', 'application/json')
             res.status(200);
             res.send(JSON.stringify(reqData));
@@ -68,9 +87,14 @@ function addContact(req, res) {
     })
 }
 
-function updateContact(req, res, reqId) {
-    let contacts = JSON.parse(listContacts());
-    if(contacts.some(item => item.id === reqId)) {
+async function updateContact(req, res, reqId) {
+    let contact = await User.find()
+                                .where('id')
+                                .equals(reqId)
+                                .then(user => {return user})
+                                .catch(err => console.log(err));
+        contact = Object.assign({}, contact[0]._doc);
+    if(contact) {
         let body = req.body,
             reqKeys = Object.keys(req.body),
             necessaryKeys = ['name', 'email', 'phone'],
@@ -80,16 +104,14 @@ function updateContact(req, res, reqId) {
         })
         if(changingKeys.length > 0) {
             changingKeys.forEach(item => {
-                contacts[reqId - 1][item] = body[item];
+                contact[item] = body[item];
             })
-            let resp = Object.assign({}, contacts[reqId - 1]);
-            contacts = JSON.stringify(contacts);
-            fs.writeFileSync('./src/contacts.json', contacts, (err, data) => {
-                if(err)throw err;
-            })
-            res.set('Content-Type', 'application/json')
-            res.status(200);
-            res.send(JSON.stringify(resp));
+            User.updateOne({id: contact.id}, contact)
+                .then(() => {
+                    res.set('Content-Type', 'application/json');
+                    res.status(200);
+                    res.send(JSON.stringify(contact));
+                })
         } else {
             res.set('Content-Type', 'application/json')
             res.status(400);
@@ -102,4 +124,4 @@ function updateContact(req, res, reqId) {
     }
 }
 
-export {updateContact, addContact, removeContact, getById, listContacts};
+export {updateContact, addContact, removeContact, getById, getUsersDB};
