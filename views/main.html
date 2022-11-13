@@ -1,0 +1,244 @@
+<!DOCTYPE html>   
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">	 
+    <link media="all" rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="https://camo.githubusercontent.com/eb8b5f9caa4b4765b222e961729eadb775ac710b/68747470733a2f2f67617265766e612e6769746875622e696f2f6a732d73616d706c65732f696d616765732f612d6c6576656c2d69636f2e706e67" >	
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>A-level</title>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <div class="container">
+            <div class="logo-wrap">
+                <a href="#"><img src="img/logo.png" alt="logo"></a>
+            </div>
+            <div class="cart">
+                <div class="cart-btn-wrapper">
+                    <img src="img/icons/cart.svg" alt="cart">
+                    <div class="cart-items-counter">0</div>
+                </div>
+                <div class="cart-body">
+                    <div class="cart-container">
+                        <header>
+                            <h2>Shopping Cart</h2>
+                            <p>Checkout is almost done!</p>
+                        </header>
+                        <div class="cart-items">
+                            <div class="cart-item" style="display: none;">
+                                <div class="cart-item-container">
+                                    <div class="cart-img-wrapper">
+                                        <img src="" alt="">
+                                    </div>
+                                    <div class="cart-item-info">
+                                        <h3></h3>
+                                        <div class="cart-item-price">
+                                            <p>$<span></span></p>
+                                        </div>
+                                    </div>
+                                    <div class="cart-item-counter">
+                                        <div class="item-count-down"></div>
+                                        <div class="item-amount"></div>
+                                        <div class="item-count-up"></div>
+                                    </div>
+                                    <div class="cart-item-del"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-total-amount">
+                            <div class="cart-total-container">
+                                <p>Total amount: <span class="cart-total-bits">0</span><span> pct.</span></p>
+                                <p>Total price: <span>$</span><span class="cart-total-cash">0</span></p>
+                            </div>
+                        </div>
+                        <div class="cart-btn">
+                            <button>Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <section class="banner">
+                <div class="container">
+                    <div class="h-btn-wrapper">
+                        <h2>IPad Air</h2>
+                        <button class="add-to-cart">Add to cart</button>
+                    </div>
+                    <img src="img/banners/ipad_air_banner.jpg" alt="mac">
+                </div>
+            </section>
+            <section class="search">
+                <div class="container">
+                    <div class="input-search-wrap">
+                        <label for="search-input">
+                            <div class="search-icon">
+                                <img src="img/icons/search.svg" alt="search">
+                            </div>
+                            <input type="search" id="search-input" name="search" placeholder="Enter device name...">
+                        </label>
+                        <div class="filter-icon-wrap">
+                            <img src="img/icons/filter.svg" alt="filter">
+                        </div>
+                        <div class="setting-icon-wrap">
+                            <img src="img/icons/settings.svg" alt="setting">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="product-cards">
+                <div class="container">
+                    <div class="filter-wrapper">
+                        <div class="filter">
+                            <div class="filter-item">
+                                <div class="filter-title">
+                                    <h4>Price</h4>
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="price-variants filter-variants">
+                                    <div>
+                                        <label for="priceFrom">From</label>
+                                        <input type="text" id="priceFrom">
+                                    </div>
+                                    <div>
+                                        <label for="priceTo">To</label>
+                                        <input type="text" id="priceTo">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-item">
+                                <div class="filter-title">
+                                    <h4>Color</h4>
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="color-variants filter-variants">
+                                </div>
+                            </div>
+                            <div class="filter-item">
+                                <div class="filter-title">
+                                    <h4>Memory</h4>
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="memory-variants filter-variants">
+                                </div>
+                            </div>
+                            <div class="filter-item">
+                                <div class="filter-title">
+                                    <h4>OS</h4>
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="os-variants filter-variants">
+                                </div>
+                            </div>
+                            <div class="filter-item">
+                                <div class="filter-title">
+                                    <h4>Display</h4>
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="display-variants filter-variants">
+                                    <div class="display-variant">
+                                        <input type="checkbox" id="inch2_5">
+                                        <label for="inch2_5">2-5 inch</label>
+                                    </div>
+                                    <div class="display-variant">
+                                        <input type="checkbox" id="inch5_7">
+                                        <label for="inch5_7">5-7 inch</label>
+                                    </div>
+                                    <div class="display-variant">
+                                        <input type="checkbox" id="inch7_12">
+                                        <label for="inch7_12">7-12 inch</label>
+                                    </div>
+                                    <div class="display-variant">
+                                        <input type="checkbox" id="inch12_16">
+                                        <label for="inch12_16">12-16 inch</label>
+                                    </div>
+                                    <div class="display-variant">
+                                        <input type="checkbox" id="more16">
+                                        <label for="more16">+16 inch</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="go-filter">
+                                <div>
+                                    <h4>FILTER</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="items-wrapper"></div>
+                    <div class="modal-card-wrapper">
+                        <div class="modal-card">
+                            <div class="modal-img-wrapper">
+                                <div class="modal-img">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+                            <div class="modal-description-wrapper">
+                                <div class="modal-description">
+                                    <h3>sadasd</h3>
+                                    <div class="modal-reviews">
+                                        <div class="heart"><img src="img/icons/like_filled.svg" alt="like"></div>
+                                        <div class="product-reviews">
+                                            <p><span class="reviews-percent"></span> Positive reviews</p>
+                                            <p>Above avarage</p>
+                                        </div>
+                                        <div class="product-orders">
+                                            <p class="orders-number"></p>
+                                            <p>orders</p>
+                                        </div>
+                                    </div>
+                                    <dl>
+                                        <div class="modal-color">
+                                            <dt>Color:</dt>
+                                            <dd></dd>
+                                        </div>
+                                        <div class="modal-operating-system">
+                                            <dt>Operating System:</dt>
+                                            <dd></dd>
+                                        </div>
+                                        <div class="modal-chip">
+                                            <dt>Chip:</dt>
+                                            <dd></dd>
+                                        </div>
+                                        <div class="modal-height">
+                                            <dt>Height:</dt>
+                                            <dd></dd>
+                                        </div>
+                                        <div class="modal-width">
+                                            <dt>Width:</dt>
+                                            <dd></dd>
+                                        </div>
+                                        <div class="modal-depth">
+                                            <dt>Depth:</dt>
+                                            <dd></dd>
+                                        </div>
+                                        <div class="modal-weight">
+                                            <dt>Weight:</dt>
+                                            <dd></dd>
+                                        </div>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="modal-price-wrapper">
+                                <div>
+                                    <p>$ <span class="modal-price"></span></p>
+                                    <p>Stock: <span class="modal-amount"></span> pcs</p>
+                                    <button class="add-to-cart">Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+<script type="module" src="js/script.js"></script>
+</body>
+</html>

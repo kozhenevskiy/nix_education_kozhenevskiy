@@ -1,8 +1,7 @@
 export const items = [
     {
-        id: 1,
         category: 'mac',
-        imgUrl: 'items/macbook-air.png',
+        imgUrl: 'img/items/macbook-air.png',
         name: 'MacBook Air',
         display: 13.3, // дюймы
         color: ['Gold', 'Silver', 'Space Grey'],
@@ -38,9 +37,8 @@ export const items = [
         }
     },
     {
-        id: 2,
         category: 'mac',
-        imgUrl: 'items/macbook-air.png',
+        imgUrl: 'img/items/macbook-air.png',
         name: 'MacBook Air',
         display: 13.3, // дюймы
         color: ['Gold', 'Silver', 'Space Grey'],
@@ -76,9 +74,8 @@ export const items = [
         }
     },
     {
-        id: 3 ,
         category: 'mac',
-        imgUrl: 'items/macbook-pro13.png',
+        imgUrl: 'img/items/macbook-pro13.png',
         name: 'MacBook Pro 13',
         display: 13.3, // дюймы
         color: [ 'Silver', 'Space Grey'],
@@ -114,9 +111,8 @@ export const items = [
         }
     },
     {
-        id: 4 ,
         category: 'mac',
-        imgUrl: 'items/macbook-pro13.png',
+        imgUrl: 'img/items/macbook-pro13.png',
         name: 'MacBook Pro 13',
         display: 13.3, // дюймы
         color: [ 'Silver', 'Space Grey'],
@@ -152,9 +148,8 @@ export const items = [
         }
     },
     {
-        id: 5 ,
         category: 'mac',
-        imgUrl: 'items/macbook-pro16.png',
+        imgUrl: 'img/items/macbook-pro16.png',
         name: 'MacBook Pro 16',
         display: 16, // дюймы
         color: [ 'Silver', 'Space Grey'],
@@ -190,9 +185,8 @@ export const items = [
         }
     },
     {
-        id: 6 ,
         category: 'mac',
-        imgUrl: 'items/macbook-pro16.png',
+        imgUrl: 'img/items/macbook-pro16.png',
         name: 'MacBook Pro 16',
         display: 16, // дюймы
         color: [ 'Silver', 'Space Grey'],
@@ -228,9 +222,8 @@ export const items = [
         }
     },
     {
-        id: 7 ,
         category: 'mac',
-        imgUrl: 'items/imac.png',
+        imgUrl: 'img/items/imac.png',
         name: 'IMac',
         display: 21.5, // дюймы
         color: [  'Space Grey'],
@@ -266,9 +259,8 @@ export const items = [
         }
     },
     {
-        id: 8 ,
         category: 'mac',
-        imgUrl: 'items/imac.png',
+        imgUrl: 'img/items/imac.png',
         name: 'IMac',
         display: 27, // дюймы
         color: [  'Space Grey'],
@@ -304,9 +296,8 @@ export const items = [
         }
     },
     {
-        id: 9 ,
         category: 'mac',
-        imgUrl: 'items/mac_pro.png',
+        imgUrl: 'img/items/mac_pro.png',
         name: 'Mac Pro',
         display: null, // дюймы
         color: [  'Space Grey'],
@@ -342,9 +333,8 @@ export const items = [
         }
     },
     {
-        id: 10 ,
         category: 'ipad',
-        imgUrl: 'items/ipad-pro.jpeg',
+        imgUrl: 'img/items/ipad-pro.jpeg',
         name: 'IPad Pro ',
         display: 11, // дюймы
         color: [ 'Silver', 'Space Grey'],
@@ -380,9 +370,8 @@ export const items = [
         }
     },
     {
-        id: 34 ,
         category: 'ipad',
-        imgUrl: 'items/ipad-air.png',
+        imgUrl: 'img/items/ipad-air.png',
         name: 'IPad Air',
         display: 10.9, // дюймы
         color: [ 'Silver', 'Space Grey','Rose Gold','Green','Sky Blue'],
@@ -418,9 +407,8 @@ export const items = [
         }
     },
     {
-        id: 11 ,
         category: 'ipad',
-        imgUrl: 'items/ipad.png',
+        imgUrl: 'img/items/ipad.png',
         name: 'IPad',
         display: 10.2, // дюймы
         color: [ 'Silver', 'Space Grey','Gold'],
@@ -456,9 +444,8 @@ export const items = [
         }
     },
     {
-        id: 12 ,
         category: 'ipad',
-        imgUrl: 'items/ipad-mini.png',
+        imgUrl: 'img/items/ipad-mini.png',
         name: 'IPad mini',
         display: 7.9, // дюймы
         color: [ 'Silver', 'Space Grey','Gold'],
@@ -494,9 +481,8 @@ export const items = [
         }
     },
     {
-        id: 13 ,
         category: 'Watch',
-        imgUrl: 'items/apple-watch-series-6.png',
+        imgUrl: 'img/items/apple-watch-series-6.png',
         name: 'Apple Watch Series 6',
         display: 1.73228, // дюймы
         color: [ 'Silver', 'Space Grey','Gold','Blue','Graphite'],
@@ -532,9 +518,8 @@ export const items = [
         }
     },
     {
-        id: 14 ,
         category: 'Watch',
-        imgUrl: 'items/apple-watch-se.jpg',
+        imgUrl: 'img/items/apple-watch-se.jpg',
         name: 'Apple Watch Series SE',
         display: 1.73228, // дюймы
         color: [ 'Silver', 'Space Grey','Gold','Blue','Graphite'],
@@ -570,9 +555,8 @@ export const items = [
         }
     },
     {
-        id: 15 ,
         category: 'Watch',
-        imgUrl: 'items/apple-watch3.jpg',
+        imgUrl: 'img/items/apple-watch3.jpg',
         name: 'Apple Watch Series 3',
         display: 22.1654 ,// дюймы
         color: [ 'Silver', 'Space Grey','Gold','Blue','Graphite'],
@@ -608,9 +592,8 @@ export const items = [
         }
     },
     {
-        id: 16,
         category: 'iphone',
-        imgUrl: 'items/iphone_12.jpg',
+        imgUrl: 'img/items/iphone_12.jpg',
         name: 'IPhone 12',
         display: 6.1, // дюймы
         color: ['Black', 'White', 'Green', 'Blue', 'Red'],
@@ -646,9 +629,8 @@ export const items = [
         }
     },
     {
-        id: 17,
         category: 'iphone',
-        imgUrl: 'items/iphone_12.jpg',
+        imgUrl: 'img/items/iphone_12.jpg',
         name: 'IPhone 12',
         display: 6.1, // дюймы
         color: ['Black', 'White', 'Green', 'Blue', 'Red'],
@@ -684,9 +666,8 @@ export const items = [
         }
     },
     {
-        id: 18,
         category: 'iphone',
-        imgUrl: 'items/iphone_12.jpg',
+        imgUrl: 'img/items/iphone_12.jpg',
         name: 'IPhone 12 Mini',
         display: 5.4, // дюймы
         color: ['Black', 'White', 'Green', 'Blue', 'Red'],
@@ -722,9 +703,8 @@ export const items = [
         }
     },
     {
-        id: 19,
         category: 'iphone',
-        imgUrl: 'items/iphone-12-pro.jpeg',
+        imgUrl: 'img/items/iphone-12-pro.jpeg',
         name: 'IPhone 12 Pro',
         display: 6.1, // дюймы
         color: ['Silver', 'Graphite', 'Gold', 'Pacific Blue'],
@@ -760,9 +740,8 @@ export const items = [
         }
     },
     {
-        id: 20,
         category: 'iphone',
-        imgUrl: 'items/iphone-12-pro.jpeg',
+        imgUrl: 'img/items/iphone-12-pro.jpeg',
         name: 'IPhone 12 Pro',
         display: 6.1, // дюймы
         color: ['Silver', 'Graphite', 'Gold', 'Pacific Blue'],
@@ -798,9 +777,8 @@ export const items = [
         }
     },
     {
-        id: 21,
         category: 'iphone',
-        imgUrl: 'items/iphone-12-pro.jpeg',
+        imgUrl: 'img/items/iphone-12-pro.jpeg',
         name: 'IPhone 12 Pro Max',
         display: 6.7, // дюймы
         color: ['Silver', 'Graphite', 'Gold', 'Pacific Blue'],
@@ -836,9 +814,8 @@ export const items = [
         }
     },
     {
-        id: 22,
         category: 'iphone',
-        imgUrl: 'items/iphone-se.jpeg',
+        imgUrl: 'img/items/iphone-se.jpeg',
         name: 'IPhone SE',
         display: 4.7, // дюймы
         color: ['Black', 'White', 'Red'],
@@ -874,9 +851,8 @@ export const items = [
         }
     },
     {
-        id: 23,
         category: 'iphone',
-        imgUrl: 'items/iphone11.jpeg',
+        imgUrl: 'img/items/iphone11.jpeg',
         name: 'IPhone 11',
         display: 6.1, // дюймы
         color: ['Black', 'Green', 'Yellow', 'Purple', 'White', 'Red'],
@@ -912,9 +888,8 @@ export const items = [
         }
     },
     {
-        id: 24,
         category: 'iphone',
-        imgUrl: 'items/iphone11.jpeg',
+        imgUrl: 'img/items/iphone11.jpeg',
         name: 'IPhone 11',
         display: 6.1, // дюймы
         color: ['Black', 'Green', 'Yellow', 'Purple', 'White', 'Red'],
@@ -950,9 +925,8 @@ export const items = [
         }
     },
     {
-        id: 25,
         category: 'iphone',
-        imgUrl: 'items/iphone11.jpeg',
+        imgUrl: 'img/items/iphone11.jpeg',
         name: 'IPhone 11',
         display: 6.1, // дюймы
         color: ['Black', 'Green', 'Yellow', 'Purple', 'White', 'Red'],
@@ -988,9 +962,8 @@ export const items = [
         }
     },
     {
-        id: 26,
         category: 'iphone',
-        imgUrl: 'items/iphone-xr.jpg',
+        imgUrl: 'img/items/iphone-xr.jpg',
         name: 'IPhone XR',
         display: 6.1, // дюймы
         color: ['Black', 'Coral', 'Yellow', 'Blue', 'White', 'Red'],
@@ -1026,9 +999,8 @@ export const items = [
         }
     },
     {
-        id: 27,
         category: 'iphone',
-        imgUrl: 'items/iphone-xs.jpg',
+        imgUrl: 'img/items/iphone-xs.jpg',
         name: 'IPhone XS',
         display: 5.8, // дюймы
         color: ['White', 'Rose Gold', 'Space Grey'],
@@ -1064,9 +1036,8 @@ export const items = [
         }
     },
     {
-        id: 28,
         category: 'iphone',
-        imgUrl: 'items/iphone-xs.jpg',
+        imgUrl: 'img/items/iphone-xs.jpg',
         name: 'IPhone XS',
         display: 5.8, // дюймы
         color: ['White', 'Rose Gold', 'Space Grey'],
@@ -1102,9 +1073,8 @@ export const items = [
         }
     },
     {
-        id: 29,
         category: 'tv',
-        imgUrl: 'items/apple-tv.jpeg',
+        imgUrl: 'img/items/apple-tv.jpeg',
         name: 'Apple TV 4K',
         display: null, // дюймы
         color: ['Black'],
@@ -1118,8 +1088,14 @@ export const items = [
         touchId: false,
         faceId: false,
         wireless: ['Wi-Fi', 'Bluetooth 5.0'],
-        camera: null,
-        audio: null,
+        camera: {
+            front: null,
+            back: null,
+        },
+        audio: {
+            microphone: null,
+            speakers: null,
+        },
         size: {
             height: '3.5', // cm
             width: '9.8', // cm
@@ -1134,9 +1110,8 @@ export const items = [
         }
     },
     {
-        id: 30,
         category: 'tv',
-        imgUrl: 'items/apple-tv.jpeg',
+        imgUrl: 'img/items/apple-tv.jpeg',
         name: 'Apple TV 4K',
         display: null, // дюймы
         color: ['Black'],
@@ -1150,8 +1125,14 @@ export const items = [
         touchId: false,
         faceId: false,
         wireless: ['Wi-Fi', 'Bluetooth 5.0'],
-        camera: null,
-        audio: null,
+        camera: {
+            front: null,
+            back: null,
+        },
+        audio: {
+            microphone: null,
+            speakers: null,
+        },
         size: {
             height: '3.5', // cm
             width: '9.8', // cm
@@ -1166,9 +1147,8 @@ export const items = [
         }
     },
     {
-        id: 31,
         category: 'airpods',
-        imgUrl: 'items/airpods.jpg',
+        imgUrl: 'img/items/airpods.jpg',
         name: 'AirPods',
         display: null, // дюймы
         color: ['White'],
@@ -1182,7 +1162,10 @@ export const items = [
         touchId: false,
         faceId: false,
         wireless: ['Bluetooth 5.0'],
-        camera: null,
+        camera: {
+            front: null,
+            back: null,
+        },
         audio: {
             microphone: 'Three-mic array with directional beamforming',
             speakers: 'Stereo speakers',
@@ -1201,9 +1184,8 @@ export const items = [
         }
     },
     {
-        id: 32,
         category: 'airpods',
-        imgUrl: 'items/airpods_pro.jpg',
+        imgUrl: 'img/items/airpods_pro.jpg',
         name: 'AirPods Pro',
         display: null, // дюймы
         color: ['White'],
@@ -1217,7 +1199,10 @@ export const items = [
         touchId: false,
         faceId: false,
         wireless: ['Bluetooth 5.0'],
-        camera: null,
+        camera: {
+            front: null,
+            back: null,
+        },
         audio: {
             microphone: 'Three-mic array with directional beamforming',
             speakers: 'Stereo speakers',
@@ -1236,9 +1221,8 @@ export const items = [
         }
     },
     {
-        id: 33,
         category: 'airpods',
-        imgUrl: 'items/airpods-max.jpg',
+        imgUrl: 'img/items/airpods-max.jpg',
         name: 'AirPods Max',
         display: null, // дюймы
         color: ['White'],
@@ -1252,7 +1236,10 @@ export const items = [
         touchId: false,
         faceId: false,
         wireless: ['Bluetooth 5.0'],
-        camera: null,
+        camera: {
+            front: null,
+            back: null,
+        },
         audio: {
             microphone: 'Three-mic array with directional beamforming',
             speakers: 'Stereo speakers',
