@@ -4,7 +4,7 @@ import {Product} from '../models/product.js';
 class mainController {
     async getMain(req, res) {
         try {
-            res.status(200).sendFile(path.resolve('views/main.html'));
+            res.status(200).sendFile(path.resolve('app/views/main.html'));
         } catch(err) {
             console.log(err);
             res.status(400).json({message: 'Response error'});

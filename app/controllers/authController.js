@@ -53,7 +53,7 @@ class authController {
 
     async getPage(req, res) {
         try {
-            res.sendFile(path.resolve('views/auth.html'));
+            res.sendFile(path.resolve('app/views/auth.html'));
         } catch(err) {
             console.log(err);
             res.status(400).json('Response error');

@@ -7,7 +7,7 @@ const emailInp = document.querySelector('#email');
 const correctTip = document.querySelector('.message');
 
 regBtn.addEventListener('click', (event) => {
-    const url = 'http://localhost:8000/auth/registration';
+    const url = 'http://localhost/auth/registration';
     if(!regBtn.classList.contains('active')) {
         regBtn.classList.add('active');
         loginBtn.classList.remove('active');
@@ -50,7 +50,7 @@ function registration(url, name, pass, usermail) {
 }
 
 loginBtn.addEventListener('click', (event) => {
-    const url = 'http://localhost:8000/auth/login';
+    const url = 'http://localhost/auth/login';
     if(!loginBtn.classList.contains('active')) {
         loginBtn.classList.add('active');
         regBtn.classList.remove('active');
@@ -86,7 +86,7 @@ function login(url, name, pass) {
                 message(data)
             } else {
             document.cookie = `macOutletTOKEN=${data.token}; max-age=3600`;
-            document.location.replace('http://localhost:8000/main');
+            document.location.replace('http://localhost/main');
             }
         })
     })

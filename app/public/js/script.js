@@ -8,7 +8,7 @@ import {filter, createFilterHTML} from './filter.js'
  
 let items;
 
-fetch('http://localhost:8000/main/products', {
+fetch('http://localhost/main/products', {
     method: 'GET',
 }).then(response => {
     response.json().then(data => {
