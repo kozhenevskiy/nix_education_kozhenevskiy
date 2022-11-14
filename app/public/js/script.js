@@ -8,7 +8,7 @@ import {filter, createFilterHTML} from './filter.js'
  
 let items;
 
-fetch('http://localhost/main/products', {
+fetch('https://mac-outlet.herokuapp.com/main/products', {
     method: 'GET',
 }).then(response => {
     response.json().then(data => {
