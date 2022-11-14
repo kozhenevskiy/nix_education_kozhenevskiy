@@ -86,7 +86,7 @@ function login(url, name, pass) {
                 message(data)
             } else {
             document.cookie = `macOutletTOKEN=${data.token}; max-age=3600`;
-            // document.location.replace('https://mac-outlet.herokuapp.com/main');
+            document.location.replace('https://mac-outlet.herokuapp.com/main');
             }
         })
     })
