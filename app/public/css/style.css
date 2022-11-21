@@ -531,7 +531,7 @@ header .cart-btn-wrapper>img {
 .product-item {
     display: flex;
     flex-flow: column nowrap;
-    margin-bottom: 50px;
+    margin: 0 3px 50px;
     min-width: 300px;
     max-width: 48%;
     width: 100%;
@@ -904,6 +904,10 @@ header .cart-btn-wrapper>img {
 
     .product-cards .items-wrapper {
         justify-content: space-between;
+    }
+
+    .product-item {
+        margin: 0 0 50px;
     }
 
 }
