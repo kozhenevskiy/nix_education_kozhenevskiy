@@ -532,7 +532,7 @@ header .cart-btn-wrapper>img {
     display: flex;
     flex-flow: column nowrap;
     margin: 0 3px 50px;
-    min-width: 300px;
+    min-width: 293px;
     max-width: 48%;
     width: 100%;
     overflow: hidden;
